@@ -392,6 +392,7 @@ a:hover .arr, button:hover .arr { transform: translate(3px, -3px); }
 .poster--bold .poster__mark { font-weight: 800; }
 /* poster in a narrow/tall frame: scale the wordmark down */
 .g--split .poster__mark, .g__big .poster__mark { font-size: clamp(2rem, 17cqw, 9rem); }
+.g--split .poster--mono .poster__mark { font-size: clamp(1.6rem, 11cqw, 6rem); }
 
 /* Gallery layouts */
 .g { display: grid; gap: var(--gap); grid-template-columns: minmax(0, 1fr); }
