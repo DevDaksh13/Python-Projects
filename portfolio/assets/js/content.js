@@ -53,7 +53,7 @@ window.SITE = {
   contact: {
     email: "daksh.arya135@gmail.com",
     linkedin: "https://www.linkedin.com/in/daksharya135/",
-    github: "https://github.com/DevDaksh13",
+    github: "", // leave empty to hide the GitHub link
   },
 
   /* ------------------------------------------------------------------ */
