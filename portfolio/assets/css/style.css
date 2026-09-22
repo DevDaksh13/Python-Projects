@@ -184,6 +184,7 @@ a:hover .arr, button:hover .arr { transform: translate(3px, -3px); }
    -------------------------------------------------------------------------- */
 .nav {
   position: fixed; inset: 0 0 auto; z-index: 1000;
+  padding-top: env(safe-area-inset-top, 0px);
   color: var(--fg);
   transition: background-color 0.4s, color 0.4s, height 0.4s;
 }
