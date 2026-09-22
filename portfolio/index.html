@@ -29,7 +29,7 @@
         <a href="#experience" data-nav="experience">Experience</a>
         <a href="#certifications" data-nav="certifications">Certifications</a>
       </nav>
-      <a class="nav__cta" data-slot="email-link" href="#contact">Say hello <span class="arr">↗</span></a>
+      <a class="nav__cta" href="#contact">Say hello <span class="arr">↗</span></a>
       <button class="nav__menu" type="button" aria-expanded="false" aria-controls="mobile-menu">Menu</button>
     </div>
     <div class="mobile-menu" id="mobile-menu" hidden>
@@ -165,7 +165,13 @@
       <p class="label">Got something in mind?</p>
       <div class="footer__main">
         <a class="footer__cta reveal" data-slot="email-link" href="#">Let's talk<span class="sq"></span></a>
-        <a class="footer__email" data-slot="email-link" href="#"><span data-slot="email"></span><span class="arr">↗</span></a>
+        <div class="footer__contact">
+          <a class="footer__email" data-slot="email-link" href="#"><span class="footer__address" data-slot="email"></span><span class="arr">↗</span></a>
+          <div class="footer__actions">
+            <button class="ulink" type="button" data-copy-email>Copy email</button>
+            <a class="ulink" data-slot="gmail-link" href="#" target="_blank" rel="noopener">Open in Gmail <span class="arr">↗</span></a>
+          </div>
+        </div>
       </div>
       <div class="footer__base">
         <a class="logo logo--small" href="#top" aria-label="Back to top"><span data-slot="initials">da</span><span class="sq"></span></a>
@@ -176,6 +182,7 @@
     </div>
   </footer>
 
+  <div class="toast" role="status" aria-live="polite"></div>
   <button class="to-top" type="button" aria-label="Back to top"><span class="to-top__pct">0%</span><span class="arr">↑</span></button>
 
   <!-- LIGHTBOX ----------------------------------------------------------->

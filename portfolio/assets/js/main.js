@@ -414,6 +414,8 @@
     fill("now", p.rightNow.map((t) => `<li>${esc(t)}</li>`).join(""));
     fill("email", esc(c.email));
     $$('[data-slot="email-link"]').forEach((a) => (a.href = `mailto:${c.email}`));
+    // Web compose link: works even where mailto: links are blocked
+    $$('[data-slot="gmail-link"]').forEach((a) => (a.href = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(c.email)}`));
 
     fill(
       "contact-links",
@@ -629,6 +631,42 @@
     loop();
   }
 
+  // Email: mailto: links don't open a mail app everywhere (e.g. embedded
+  // viewers), so every email click also copies the address and says so.
+  function initEmail() {
+    const email = S.contact.email;
+    const toastEl = $(".toast");
+    let timer = null;
+    const toast = (msg) => {
+      if (!toastEl) return;
+      toastEl.textContent = msg;
+      toastEl.classList.add("is-on");
+      clearTimeout(timer);
+      timer = setTimeout(() => toastEl.classList.remove("is-on"), 3200);
+    };
+    const selectAddress = () => {
+      const el = $(".footer__address");
+      if (!el) return;
+      const range = document.createRange();
+      range.selectNodeContents(el);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+    };
+    const copy = () => {
+      const fallback = () => {
+        selectAddress();
+        toast("Email selected, press Ctrl/⌘ + C to copy");
+      };
+      if (!navigator.clipboard || !navigator.clipboard.writeText) return fallback();
+      navigator.clipboard.writeText(email).then(() => toast(`Copied ${email}`), fallback);
+    };
+    document.addEventListener("click", (e) => {
+      if (e.target.closest("[data-copy-email]")) return copy();
+      if (e.target.closest('a[href^="mailto:"]')) copy(); // let the mail app open too, where it can
+    });
+  }
+
   function initLightbox() {
     const dlg = $(".lightbox");
     if (!dlg || typeof dlg.showModal !== "function") return;
@@ -682,6 +720,7 @@
   initCarousels();
   initBenchPreview();
   initCursor();
+  initEmail();
   initLightbox();
   initReveal();
 
