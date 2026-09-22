@@ -19,10 +19,15 @@
    In `wordmark`, wrap part of the name in *asterisks* to colour it with
    the poster accent. Once you add a real `src`, the photo replaces it.
 
-   Items marked  TODO  are placeholders waiting for your real details.
+   Items marked  TODO  still need your real details.
    ========================================================================== */
 
 window.SITE = {
+  /* false = hide image slots that have no `src` yet (use this for the live
+     site). true = show the labelled placeholders while you add photos.
+     Project posters are always shown until the first image has a src.  */
+  showPlaceholders: false,
+
   /* ------------------------------------------------------------------ */
   profile: {
     name: "Daksh Arya",
@@ -46,9 +51,9 @@ window.SITE = {
   },
 
   contact: {
-    email: "hello@example.com", // TODO: your email
-    linkedin: "https://www.linkedin.com/in/your-handle", // TODO: your LinkedIn URL
-    github: "https://github.com/DevDaksh13", // TODO: confirm GitHub URL
+    email: "daksh.arya135@gmail.com",
+    linkedin: "https://www.linkedin.com/in/daksharya135/",
+    github: "https://github.com/DevDaksh13",
   },
 
   /* ------------------------------------------------------------------ */
@@ -69,7 +74,7 @@ window.SITE = {
       category: "Wearable / IoT / Product Development",
       title: "HeatGuard",
       hook: "A wearable system designed to detect individual heat strain before symptoms escalate.",
-      year: "", // TODO: e.g. "2025"
+      year: "2026",
       layout: "feature",
       media: [
         { src: "", label: "[HeatGuard Hero Image]", caption: "Wearable prototype", ratio: "16/8" },
@@ -78,21 +83,20 @@ window.SITE = {
         { src: "", label: "[HeatGuard Field Test]", caption: "Field testing", ratio: "4/3" },
       ],
       objective:
-        "Protect outdoor workers by monitoring individual physiological heat strain rather than relying only on environmental measurements.",
+        "Protect outdoor workers by monitoring each person's physiological heat strain, not just the weather around them.",
       actions: [
-        "Built an ESP32-based wearable using heart rate, skin temperature and motion sensors",
+        "Built an upper-arm ESP32 wearable combining heart rate, skin temperature and motion sensing",
         "Developed a live React dashboard for supervisors",
         "Designed real-time heat-strain risk scoring and alerts",
       ],
       results: [
-        { value: "10", text: "construction workers in the pilot design" },
-        { value: "S$2k", text: "prototype funding received" },
+        { value: "S$2,000", text: "prototype funding secured" },
+        { value: "10", text: "worker construction pilot in progress with Hexacon Construction" },
         { text: "Create4Good Semi-Finalist" },
       ],
       stack: ["ESP32", "React", "IoT", "Sensors", "Embedded Systems"],
       links: [], // e.g. { label: "GitHub", url: "https://github.com/…" }
-      story:
-        "[Placeholder — Behind the project] Two or three sentences on why HeatGuard started, the hardest problem along the way, and what you learnt from testing it with real people.",
+      story: "", // optional: 2–3 sentences shown under "Behind the project"
     },
     {
       id: "wallee",
@@ -101,7 +105,7 @@ window.SITE = {
       category: "AI / Computer Vision / Research",
       title: "Wallee",
       hook: "An AI-driven closed-loop system that watches 3D prints and reacts to defects.",
-      year: "",
+      year: "2026",
       layout: "split",
       media: [
         { src: "", label: "[Wallee Camera Setup]", caption: "Camera rig over the print bed", ratio: "1/1" },
@@ -113,8 +117,8 @@ window.SITE = {
         "Improve FDM printing quality using AI-assisted visual monitoring and intervention.",
       actions: [
         "Built a vision-based print monitoring pipeline",
-        "Integrated AI reasoning with printer telemetry",
-        "Ran controlled print experiments and dimensional measurements",
+        "Integrated vision-language model reasoning with printer telemetry for automated intervention",
+        "Ran controlled print experiments with microscopy and caliper measurements",
       ],
       results: [
         { value: "15%", text: "lower dimensional error than baseline stock printing" },
@@ -122,8 +126,7 @@ window.SITE = {
       ],
       stack: ["Computer Vision", "AI", "Python", "PrusaLink", "VLMs"],
       links: [],
-      story:
-        "[Placeholder — Behind the project] What made you want a printer that watches itself, and what surprised you in the experiments.",
+      story: "",
     },
     {
       id: "reslot",
@@ -242,44 +245,16 @@ window.SITE = {
   ],
 
   /* ------------------------------------------------------------------ */
-  /* ALSO ON THE WORKBENCH — small experiments (all TODO: replace)       */
-  workbench: [
+  /* ALSO ON THE WORKBENCH — small experiments                           */
+  /* Leave empty to hide the section. Example entry:
     {
       title: "ESP32 sketches",
       tags: "Hardware",
-      year: "",
-      description: "Short experiments with sensors, displays and wireless links on ESP32 boards.",
-      media: { src: "", label: "[ESP32 Experiment]", ratio: "4/3" },
-    },
-    {
-      title: "Vision playground",
-      tags: "Computer Vision",
-      year: "",
-      description: "OpenCV experiments in detection, tracking and measuring things through a camera.",
-      media: { src: "", label: "[CV Experiment]", ratio: "4/3" },
-    },
-    {
-      title: "Agent prototypes",
-      tags: "AI",
-      year: "",
-      description: "Small LLM prototypes to test ideas before they become full projects.",
-      media: { src: "", label: "[AI Prototype]", ratio: "4/3" },
-    },
-    {
-      title: "Weekend web builds",
-      tags: "Software",
-      year: "",
-      description: "Small tools and interfaces built to scratch an itch.",
-      media: { src: "", label: "[Software Build]", ratio: "4/3" },
-    },
-    {
-      title: "Hackathon leftovers",
-      tags: "Hackathons",
-      year: "",
-      description: "Ideas that started at a hackathon and kept going afterwards.",
-      media: { src: "", label: "[Hackathon Experiment]", ratio: "4/3" },
-    },
-  ],
+      year: "2026",
+      description: "One sentence on what you tried and what you learnt.",
+      media: { src: "assets/images/esp32.jpg", label: "[ESP32 Experiment]", ratio: "4/3" },
+    },                                                                   */
+  workbench: [],
 
   /* ------------------------------------------------------------------ */
   about: {
@@ -316,14 +291,16 @@ window.SITE = {
     {
       organisation: "SUTD DAI Fab Lab",
       role: "Undergraduate Research Assistant",
-      dates: "20XX — Present", // TODO
-      summary: "Supporting research through prototyping, fabrication and experiments.", // TODO: refine
+      dates: "Jun 2026 — Present",
+      summary: "Research on Wallee, an AI closed-loop FDM print-monitoring system: running controlled print experiments, microscopy and caliper measurements, and printer-log analysis.",
+      result: "15% lower dimensional error than stock printing",
     },
     {
       organisation: "HeatGuard",
-      role: "Co-Founder / Product Development",
-      dates: "20XX — Present", // TODO
-      summary: "Leading the product from sensor prototype to a supervisor-facing dashboard.",
+      role: "Co-Founder & Product Development",
+      dates: "Jun 2026 — Present",
+      summary: "Building an upper-arm wearable and live dashboard for heat-strain risk, across hardware, sensor integration, risk scoring and product.",
+      result: "S$2,000 funding · 10-worker pilot in progress with Hexacon Construction",
     },
   ],
 
@@ -332,8 +309,9 @@ window.SITE = {
     {
       organisation: "ShukShuk",
       role: "AI Concierge Immersion Programme",
-      dates: "20XX", // TODO
-      summary: "Worked on an AI concierge product inside a real company team.", // TODO: refine
+      dates: "2026",
+      summary: "Researched tourists' pain points around pricing, trust and product discovery for an AI shopping concierge in Singapore.",
+      result: "Turned tourist feedback into chatbot requirements: personalised discovery, authenticity signals, conversational recommendations",
     },
   ],
 
@@ -344,11 +322,29 @@ window.SITE = {
   ],
 
   /* ------------------------------------------------------------------ */
-  /* CERTIFICATIONS — 3 to 6 entries work best. All TODO.                */
+  /* CERTIFICATIONS — 3 to 6 entries work best. `url` can be a web link or
+     a PDF in assets/certificates/; `logo` is a small preview image.     */
   certifications: [
-    { name: "[Certification Name]", issuer: "[Issuing Organisation]", year: "2025", url: "#", logo: "" },
-    { name: "[Certification Name]", issuer: "[Issuing Organisation]", year: "2025", url: "#", logo: "" },
-    { name: "[Certification Name]", issuer: "[Issuing Organisation]", year: "2024", url: "#", logo: "" },
-    { name: "[Certification Name]", issuer: "[Issuing Organisation]", year: "2024", url: "#", logo: "" },
+    {
+      name: "CS50x: Introduction to Computer Science",
+      issuer: "Harvard University",
+      year: "2025",
+      url: "https://cs50.harvard.edu/certificates/484bb6e4-fe31-4c5b-b0c9-e17135ebbe80",
+      logo: "assets/certificates/cs50-thumb.png",
+    },
+    {
+      name: "AI for Industry: Literacy in AI",
+      issuer: "AI Singapore",
+      year: "2024",
+      url: "assets/certificates/ai-singapore-literacy-in-ai.pdf",
+      logo: "assets/certificates/ai-singapore-thumb.png",
+    },
+    {
+      name: "Software Engineering Job Simulation",
+      issuer: "Goldman Sachs × Forage",
+      year: "2024",
+      url: "assets/certificates/goldman-sachs-software-engineering.pdf",
+      logo: "assets/certificates/goldman-sachs-thumb.png",
+    },
   ],
 };

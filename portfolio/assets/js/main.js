@@ -16,7 +16,9 @@
   const pad = (n) => String(n).padStart(2, "0");
   const fill = (slot, html) => $$(`[data-slot="${slot}"]`).forEach((el) => (el.innerHTML = html));
   const isExternal = (url) => /^https?:/.test(url || "");
-  const linkAttrs = (url) => (isExternal(url) ? ' target="_blank" rel="noopener"' : "");
+  const linkAttrs = (url) => (isExternal(url) || /\.pdf$/i.test(url || "") ? ' target="_blank" rel="noopener"' : "");
+  // Media without a src is only shown when placeholders are switched on
+  const visible = (list) => (list || []).filter((m) => m && (m.src || S.showPlaceholders));
   // A trailing "." becomes the signature square full stop.
   const squareStop = (text) => {
     const t = esc(text);
@@ -53,7 +55,7 @@
       <span class="poster__meta">${pad(index + 1)} / ${esc(p.category)}</span>
       <span class="poster__mark">${accentParts(po.wordmark || p.title)}</span>
       <span class="poster__tag">${esc(po.tagline || "")}</span>
-      <span class="poster__ph">${esc(m.label)}</span>
+      ${S.showPlaceholders ? `<span class="poster__ph">${esc(m.label)}</span>` : ""}
     </span>`;
   }
 
@@ -72,11 +74,16 @@
   --------------------------------------------------------------------- */
   function gallery(p, n) {
     const gid = p.id;
-    const items = p.media || [];
+    // The first item stays (as a poster if it has no src); the rest need a src
+    const items = (p.media || []).filter((it, i) => (i === 0 && p.poster) || it.src || S.showPlaceholders);
+    // A poster standing on its own is always shown wide
+    if (items.length === 1 && !items[0].src) items[0] = { ...items[0], ratio: "16/8" };
     const m = (item, i, cls) =>
       media(item, gid, i, cls, i === 0 && !item.src && p.poster ? posterInner(p, n, item) : undefined);
+    // Layouts built for several images fall back to a single full-width frame
+    const layout = items.length < 2 ? "feature" : items.length < 3 && p.layout === "stack" ? "split" : p.layout;
 
-    switch (p.layout) {
+    switch (layout) {
       case "carousel":
         return `<div class="carousel" data-carousel>
           <div class="carousel__track" tabindex="0" aria-label="${esc(p.title)} images">
@@ -218,7 +225,7 @@
         .map((h, i) => {
           const gid = `hack-${h.id}`;
           const open = i === 0;
-          const imgs = (h.media || []).slice(0, 4);
+          const imgs = visible(h.media).slice(0, 4);
           return `<li class="hack reveal${open ? " is-open" : ""}">
             <button class="hack__row" type="button" aria-expanded="${open}" aria-controls="${gid}-panel">
               <span class="hack__date label">${esc(h.date)}</span>
@@ -236,9 +243,9 @@
                     <p class="hack__hook">${esc(h.hook)}</p>
                     <p class="hack__org label">${esc(h.category)}<br>${esc(h.organisation)}</p>
                   </div>
-                  <div class="hack__media hack__media--${imgs.length}">
+                  ${imgs.length ? `<div class="hack__media hack__media--${imgs.length}">
                     ${imgs.map((m, j) => media(m, gid, j)).join("")}
-                  </div>
+                  </div>` : ""}
                   <div class="facts facts--3">
                     <div class="fact"><p class="label">Objective</p><p class="fact__text">${esc(h.objective)}</p></div>
                     <div class="fact"><p class="label">Key actions</p>${actionList(h.actions || [])}</div>
@@ -260,6 +267,8 @@
      WORKBENCH
   --------------------------------------------------------------------- */
   function renderWorkbench() {
+    const section = document.getElementById("workbench");
+    if (section) section.hidden = !(S.workbench || []).length;
     fill(
       "workbench",
       (S.workbench || [])
@@ -285,7 +294,7 @@
     const a = S.about;
     fill("about-heading", squareStop(a.heading));
     fill("about-aside", esc(a.aside || ""));
-    const [big, small] = a.photos || [];
+    const [big, small] = visible(a.photos);
     fill(
       "about-photos",
       `${big ? media(big, "about", 0, "about__big reveal") : ""}${small ? media(small, "about", 1, "about__small reveal") : ""}`
@@ -322,6 +331,7 @@
           <p class="exp__org">${esc(e.organisation)}</p>
           <p class="exp__role">${esc(e.role)}<span>${esc(e.dates)}</span></p>
           ${e.summary ? `<p class="exp__sum">${esc(e.summary)}</p>` : ""}
+          ${e.result ? `<p class="exp__result">${esc(e.result)}</p>` : ""}
         </li>`
       )
       .join("");
