@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daksh Arya — I build things that think, sense and respond</title>
+  <meta name="description" content="Daksh Arya — Computer Science & Design student at SUTD building products across AI, software, computer vision and hardware.">
+  <meta name="theme-color" content="#111111">
+  <meta property="og:title" content="Daksh Arya">
+  <meta property="og:description" content="I build things that think, sense and respond.">
+  <meta property="og:type" content="website">
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="progress" aria-hidden="true"><span></span></div>
+  <div class="cursor" aria-hidden="true"><span class="cursor__ring"></span><span class="cursor__dot"></span></div>
+
+  <!-- NAV ---------------------------------------------------------------->
+  <header class="nav" id="top" data-theme="dark">
+    <div class="nav__inner wrap">
+      <a class="logo" href="#top" aria-label="Daksh Arya — back to top"><span data-slot="initials">da</span><span class="sq"></span></a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#work" data-nav="work">Work</a>
+        <a href="#about" data-nav="about">About</a>
+        <a href="#experience" data-nav="experience">Experience</a>
+        <a href="#certifications" data-nav="certifications">Certifications</a>
+      </nav>
+      <a class="nav__cta" data-slot="email-link" href="#contact">Say hello <span class="arr">↗</span></a>
+      <button class="nav__menu" type="button" aria-expanded="false" aria-controls="mobile-menu">Menu</button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <nav class="wrap" aria-label="Mobile">
+        <a href="#work"><span class="label">01</span>Work</a>
+        <a href="#about"><span class="label">02</span>About</a>
+        <a href="#experience"><span class="label">03</span>Experience</a>
+        <a href="#certifications"><span class="label">04</span>Certifications</a>
+        <a href="#contact"><span class="label">↗</span>Say hello</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO (dark) ------------------------------------------------------>
+    <section class="band band--dark hero" data-theme="dark" aria-label="Introduction">
+      <div class="wrap hero__wrap">
+        <div class="hero__meta label">
+          <span data-slot="name">Daksh Arya</span>
+          <span data-slot="place">Singapore / SUTD</span>
+        </div>
+        <h1 class="hero__title" data-slot="hero-lines">Hey, I'm Daksh.</h1>
+        <div class="hero__foot">
+          <p class="hero__intro" data-slot="intro"></p>
+          <a class="explore" href="#work">
+            <span>Explore my work</span>
+            <span class="explore__circle" aria-hidden="true"><span class="arr">↓</span></span>
+          </a>
+        </div>
+        <div class="now">
+          <span class="label label--strong"><i class="dot"></i>Right now</span>
+          <ul class="now__list" data-slot="now"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 WORK (light) -------------------------------------------------->
+    <section class="band band--light" id="work" data-theme="light">
+      <div class="wrap">
+        <header class="head reveal">
+          <div>
+            <p class="label">01 / Selected work</p>
+            <h2 class="h2">Things I've been building<span class="sq"></span></h2>
+          </div>
+          <p class="head__aside">AI, computer vision and hardware — mostly ideas I wanted to see work in the real world, with real people.</p>
+        </header>
+        <div class="projects" data-slot="projects"></div>
+      </div>
+    </section>
+
+    <!-- HACKATHONS (dark) ------------------------------------------------>
+    <section class="band band--dark" id="hackathons" data-theme="dark">
+      <div class="wrap">
+        <header class="head reveal">
+          <div>
+            <p class="label">Hackathon builds</p>
+            <h2 class="h2">Built under pressure<span class="sq"></span></h2>
+          </div>
+          <p class="head__aside">Weekend prototypes: a problem, a team and a deadline.</p>
+        </header>
+        <div data-slot="hackathons"></div>
+      </div>
+    </section>
+
+    <!-- WORKBENCH (light) ------------------------------------------------>
+    <section class="band band--light band--tight" id="workbench" data-theme="light">
+      <div class="wrap">
+        <header class="head head--small reveal">
+          <div>
+            <p class="label">Experiments</p>
+            <h2 class="h3">Also on the workbench<span class="sq"></span></h2>
+          </div>
+          <p class="head__aside">Smaller things I've been poking at. Tap one to open it.</p>
+        </header>
+        <ul class="bench" data-slot="workbench"></ul>
+      </div>
+      <div class="bench-preview" aria-hidden="true"></div>
+    </section>
+
+    <!-- 02 ABOUT (dark) -------------------------------------------------->
+    <section class="band band--dark band--dark-2" id="about" data-theme="dark">
+      <div class="wrap about">
+        <div class="about__left">
+          <div class="reveal">
+            <p class="label">02 / The person</p>
+            <h2 class="h2 h2--big" data-slot="about-heading">Hey, I'm Daksh.</h2>
+            <p class="about__aside" data-slot="about-aside"></p>
+          </div>
+          <div class="about__photos" data-slot="about-photos"></div>
+        </div>
+        <div class="about__right" data-slot="about-text"></div>
+      </div>
+    </section>
+
+    <!-- 03 EXPERIENCE (light) -------------------------------------------->
+    <section class="band band--light band--light-2" id="experience" data-theme="light">
+      <div class="wrap">
+        <div class="split">
+          <header class="split__head reveal">
+            <p class="label">03 / Along the way</p>
+            <h2 class="h2">Places I've learned<span class="sq"></span></h2>
+          </header>
+          <div class="split__body" data-slot="experience"></div>
+        </div>
+
+        <div class="people">
+          <p class="label people__label">Outside the code</p>
+          <div>
+            <h3 class="h3 reveal">The people side of things<span class="sq"></span></h3>
+            <ul class="people__list" data-slot="leadership"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 CERTIFICATIONS (light) ---------------------------------------->
+    <section class="band band--light band--light-2 band--rule" id="certifications" data-theme="light">
+      <div class="wrap">
+        <div class="split">
+          <header class="split__head reveal">
+            <p class="label">04 / Certifications</p>
+            <h2 class="h2">A few things I've picked up along the way<span class="sq"></span></h2>
+          </header>
+          <ul class="split__body certs" data-slot="certifications"></ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER (dark) ------------------------------------------------------>
+  <footer class="band band--dark footer" id="contact" data-theme="dark">
+    <div class="wrap">
+      <p class="label">Got something in mind?</p>
+      <div class="footer__main">
+        <a class="footer__cta reveal" data-slot="email-link" href="#">Let's talk<span class="sq"></span></a>
+        <a class="footer__email" data-slot="email-link" href="#"><span data-slot="email"></span><span class="arr">↗</span></a>
+      </div>
+      <div class="footer__base">
+        <a class="logo logo--small" href="#top" aria-label="Back to top"><span data-slot="initials">da</span><span class="sq"></span></a>
+        <span class="footer__copy">© <span data-year>2026</span> <span data-slot="name">Daksh Arya</span></span>
+        <nav class="footer__links" data-slot="contact-links" aria-label="Elsewhere"></nav>
+        <a class="footer__top" href="#top">Back to top <span class="arr">↑</span></a>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Back to top"><span class="to-top__pct">0%</span><span class="arr">↑</span></button>
+
+  <!-- LIGHTBOX ----------------------------------------------------------->
+  <dialog class="lightbox" aria-label="Image viewer">
+    <div class="lightbox__bar label">
+      <span class="lightbox__count"></span>
+      <button class="lightbox__close label" type="button">Close ✕</button>
+    </div>
+    <div class="lightbox__stage"></div>
+    <div class="lightbox__foot">
+      <button class="lightbox__nav" type="button" data-dir="-1" aria-label="Previous">←</button>
+      <p class="lightbox__cap"></p>
+      <button class="lightbox__nav" type="button" data-dir="1" aria-label="Next">→</button>
+    </div>
+  </dialog>
+
+  <noscript><p class="wrap" style="padding:2rem 0">This portfolio needs JavaScript to load its projects.</p></noscript>
+
+  <script src="assets/js/content.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
